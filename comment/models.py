@@ -4,7 +4,6 @@ from django.db import models
 
 # Create your models here.
 from account.models import Account
-from activity.models import Activity
 from news.models import News
 from django.core.paginator import *
 

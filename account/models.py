@@ -4,17 +4,10 @@ from account.util.verify_code import generate_verify_code
 
 
 class Account(models.Model):
-    ACCOUNT_GROUPS = (
-        (-2, r'locked'),
-        (-1, r'unchecked'),
-        (0, r'normal'),
-        (1, r'admin'),
-    )
     user_name = models.CharField(max_length=20)
     nick_name = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
     photo = models.ImageField(upload_to="static/accountImage", null=False, storage=AccountImageStorage())
-    group = models.IntegerField(choices=ACCOUNT_GROUPS)
     created = models.DateTimeField(auto_now_add=True)
     last_visit = models.DateTimeField(auto_now=True)
     email = models.EmailField()
@@ -46,17 +39,6 @@ class Account(models.Model):
             return None
 
     @staticmethod
-    def verify_account(code):
-        user = Account.objects.filter(verify_code=code).first()
-        if user is not None:
-            # todo 判断一下是不是已经确认过了
-            user.group = 0
-            user.save()
-            return user
-        else:
-            return None
-
-    @staticmethod
     def is_user_name_exist(user_name):
         return not (Account.objects.filter(user_name=user_name).count() == 0)
 
@@ -78,50 +60,3 @@ class Account(models.Model):
         user.last_name = last_name
         user.save()
         return user
-
-    @staticmethod
-    def forget_password(email):
-        account = Account.objects.filter(email=email)
-        if account.count() == 0:
-            return None
-        account = account[0]
-        while True:
-            try:
-                code = VerifyCode(code=generate_verify_code(), perpose=2,account_id=account.id)
-                code.save()
-                return code
-            except DatabaseError:
-                pass
-
-    @staticmethod
-    def check_password(password):
-        # todo:检查password合法性
-        return True
-
-    @staticmethod
-    def request_change_password(code):
-        code = VerifyCode.objects.filter(code=code, perpose=2, valid=True)
-        print(code.count())
-        if code.count() == 0:
-            return None
-        else:
-            account = code[0].account
-            code.update(valid=False)
-            return account
-
-    @staticmethod
-    def change_password(account_id,new_password):
-        account = Account.objects.filter(id=account_id)
-        account.update(password=new_password)
-        return account[0]
-
-
-class VerifyCode(models.Model):
-    PERPOSE = (
-        (1, r'Email'),
-        (2, r'Password'),
-    )
-    code = models.CharField(max_length=128, unique=True)
-    perpose = models.IntegerField(choices=PERPOSE)
-    account = models.ForeignKey(Account)
-    valid = models.BooleanField(default=True, blank=True)

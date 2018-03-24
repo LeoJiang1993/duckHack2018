@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'webroot.apps.WebrootConfig',
     'account.apps.AccountConfig',
     'news.apps.NewsConfig',
-    'activity.apps.ActivityConfig',
     'comment.apps.CommentConfig',
 ]
 
@@ -61,7 +60,6 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'webroot/templates'),
             os.path.join(BASE_DIR, 'account/templates'),
             os.path.join(BASE_DIR, 'news/templates'),
-            os.path.join(BASE_DIR, 'activity/templates'),
             os.path.join(BASE_DIR, 'comment/templates'),
         ]
         ,
@@ -86,9 +84,9 @@ WSGI_APPLICATION = 'duck_hacks_2018.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'webinfo',
-        'USER': 'admin',
-        'PASSWORD': 'dbtemp',
+        'NAME': 'duckhack',
+        'USER': 'hackeruser',
+        'PASSWORD': '123456',
         'HOST': '47.89.179.17',
         'PORT': '3306',
     }
@@ -140,14 +138,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-
-# Email settings
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
-EMAIL_HOST = '203.205.128.15'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = 'account.admin@stevenscssa.org'
-EMAIL_HOST_PASSWORD = 'accountAdmin17'
-DEFAULT_FROM_EMAIL = 'Account Admin <account.admin@stevenscssa.org>'

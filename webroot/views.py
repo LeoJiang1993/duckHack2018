@@ -1,7 +1,6 @@
 # Create your views here.
 from django.shortcuts import render
 
-from duck_hacks_2018.util.authority_decorators import admin
 from news.models import NewsOnSpecialPlace, NewsTopic
 
 
@@ -17,11 +16,6 @@ def header(request):
     news_topics = NewsTopic.get_topic_list()
     context = dict(about_us=about_us, news_topics=news_topics)
     return render(request, "header.html", context)
-
-
-@admin
-def site_admin(request):
-    return render(request, 'siteAdmin.html')
 
 
 def page_not_found(request):

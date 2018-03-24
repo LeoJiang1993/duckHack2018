@@ -21,7 +21,6 @@ from duck_hacks_2018 import settings
 from webroot import views
 from account import urls as account_urls
 from news import urls as news_urls
-from activity import urls as activity_urls
 from comment import urls as comment_urls
 
 urlpatterns = [
@@ -29,9 +28,7 @@ urlpatterns = [
                   url(r'^news', include(news_urls)),
                   url(r'^comment/', include(comment_urls)),
                   url(r'^admin/', admin.site.urls),
-                  url(r'^site_admin$', views.site_admin),
                   url(r'^header$', views.header),
-                  url(r'^activity/', include(activity_urls)),
                   url(r'^$', views.index),
 
               ] + \

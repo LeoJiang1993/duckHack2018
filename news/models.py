@@ -5,7 +5,6 @@ from django.db import models
 
 # Create your models here.
 from account.models import Account
-from activity.models import Activity
 from news.storage import NewsImageStorage
 
 
@@ -48,30 +47,27 @@ class News(models.Model):
     banner = models.ImageField(upload_to="static/news/banner", null=False, storage=NewsImageStorage())
     status = models.IntegerField(choices=NEWS_STATUS)
     topic = models.ForeignKey(NewsTopic)
-    activity = models.ForeignKey(Activity, blank=True)
     viewed = models.IntegerField(null=0)
     # todo:加上去，很多地方没有
     has_comment = models.BooleanField(default=True)
 
     @staticmethod
-    def save_news(id, title, author, content, banner, status, topic, activity, has_comment):
+    def save_news(id, title, author, content, banner, status, topic, has_comment):
         # id == 0, add a new news.
         if id == 0:
             new_news = News(title=title, author=author, content=content, banner=banner, status=status,
-                            topic_id=topic, activity_id=activity, viewed=0, has_comment=has_comment)
+                            topic_id=topic, viewed=0, has_comment=has_comment)
             new_news.save()
             return new_news
         else:
-            if activity is None:
-                activity = 1
             if banner is None:
                 news = News.objects.filter(id=id)
                 news.update(title=title, author=author, content=content,
-                            status=status, topic_id=topic, activity_id=activity, has_comment=has_comment)
+                            status=status, topic_id=topic, has_comment=has_comment)
             else:
                 news = News.objects.filter(id=id)
                 news.update(title=title, author=author, content=content, banner=banner,
-                            status=status, topic_id=topic, activity_id=activity)
+                            status=status, topic_id=topic)
             return news.first()
 
     @staticmethod
