@@ -20,14 +20,6 @@ def make_fund(request):
     return render(request, 'make_fund.html', {'idea_id': request.GET['idea_id']})
 
 
-@logged_in
-def cancel_fund(request):
-    idea = request.POST['idea_id']
-    user = request.session['user']['id']
-    buz.cancel_fund(user_id=user, idea_id=idea)
-    return True
-
-
 def get_fund_by_fonder(request, user_id=None):
     if user_id is None:
         user_id = request.session.get('user')
@@ -36,7 +28,7 @@ def get_fund_by_fonder(request, user_id=None):
         else:
             raise Http404()
     funds = buz.get_fund_by_fonder(user_id)
-    return render(request, 'user_funds.html', {funds: funds, user_id: user_id})
+    return render(request, 'user_funds.html', {'funds': funds, 'user_id': user_id})
 
 
 def get_fund_by_idea(request, idea_id):

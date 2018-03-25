@@ -28,7 +28,7 @@
             {% for favourite in favourite_list %}
                 <li>
                     {{ favourite.idea.title }}
-                    <a href="favourite/unlike/{{ favourite.idea.id }}">UNLIKE</a>
+                    <a href="/favourite/unlike/{{ favourite.idea.id }}">UNLIKE</a>
                 </li>
             {% endfor %}
         </ul>

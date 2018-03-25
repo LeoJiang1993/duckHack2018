@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <link rel="stylesheet" href="/static/css/nav_bar.css">
+    <script src="/static/js/ckeditor/ckeditor.js"></script>
+    <script src="/static/js/ckeditor/adapters/jquery.js"></script>
+</head>
+<body>
+
+<header>
+</header>
+<script src="/static/js/header.js"></script>
+<h1 class="content">FUNDS: {{ funds.first.fonder.nick_name }}</h1>
 <section id="user_funds_list" class="content">
     {% if funds %}
         <ul>
@@ -6,11 +23,12 @@
                     <a href="/idea/{{ fund.idea.id }}">
                         {{ fund.idea.title }}
                     </a>
-                    {% ifequal request.session.user.id user_id %}
-                        <a href="funds/refund/{{ fund.idea.id }}">REFUND</a>
-                    {% endifequal %}
+                    AMOUNT:{{ fund.amount }}
                 </li>
             {% endfor %}
         </ul>
     {% endif %}
 </section>
+{% include 'footer.html' %}
+</body>
+</html>
