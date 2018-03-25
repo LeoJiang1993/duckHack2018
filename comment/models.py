@@ -4,7 +4,7 @@ from django.db import models
 
 # Create your models here.
 from account.models import Account
-from news.models import News
+from ideas.models import Idea
 from django.core.paginator import *
 
 
@@ -13,7 +13,7 @@ class Comment(models.Model):
         (1, r'normal'),
         (2, r'blocked'),
     )
-    news = models.ForeignKey(News)
+    news = models.ForeignKey(Idea)
     content = models.CharField(max_length=200)
     author = models.ForeignKey(Account)
     status = models.IntegerField(choices=COMMENT_STATUS)

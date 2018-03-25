@@ -1,20 +1,16 @@
 # Create your views here.
 from django.shortcuts import render
 
-from news.models import NewsOnSpecialPlace, NewsTopic
-
+from ideas import buz as idea_buz
 
 def index(request, info=None):
-    bar_newss = NewsOnSpecialPlace.get_list(2)
-    newss = NewsOnSpecialPlace.get_list(3)
-    context = dict(bar_newss=bar_newss, newss=newss, info=info)
+    context = dict(info=info)
     return render(request, "index.html", context)
 
 
 def header(request):
-    about_us = NewsOnSpecialPlace.get_list(1)
-    news_topics = NewsTopic.get_topic_list()
-    context = dict(about_us=about_us, news_topics=news_topics)
+    topics = idea_buz.get_topic_list()
+    context = dict(topics=topics)
     return render(request, "header.html", context)
 
 

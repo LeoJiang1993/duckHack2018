@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webroot.apps.WebrootConfig',
     'account.apps.AccountConfig',
-    'news.apps.NewsConfig',
+    'ideas.apps.IdeasConfig',
     'comment.apps.CommentConfig',
 ]
 
@@ -59,7 +59,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'webroot/templates'),
             os.path.join(BASE_DIR, 'account/templates'),
-            os.path.join(BASE_DIR, 'news/templates'),
+            os.path.join(BASE_DIR, 'ideas/templates'),
             os.path.join(BASE_DIR, 'comment/templates'),
         ]
         ,

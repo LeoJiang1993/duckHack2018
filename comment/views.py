@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from comment.forms import NewComment
 from comment.models import Comment
 from duck_hacks_2018.util.authority_decorators import *
-from news.models import News, NewsTopic
+from ideas.models import Idea, Topic
 
 
 @logged_in
@@ -14,7 +14,7 @@ def comment(request):
     if cmt.is_valid():
         account_id = request.session['user'].id
         news_id = cmt.cleaned_data['news_id']
-        news = News.get_news(news_id, 1)[0]
+        news = Idea.get_idea(news_id, 1)[0]
         if not news.has_comment:
             return HttpResponse('failed')
         content = cmt.cleaned_data['content']
@@ -25,7 +25,7 @@ def comment(request):
 
 
 def get_comment(request, news_id):
-    news = News.get_news(news_id, 1)
+    news = Idea.get_idea(news_id, 1)
     if news is None:
         raise Http404()
     if not news[0].has_comment:
