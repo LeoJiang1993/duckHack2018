@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ideas</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <link rel="stylesheet" href="/static/css/news_list.css"/>
+    <link rel="stylesheet" href="/static/css/nav_bar.css">
+    <script src="/static/js/news/news_list.js"></script>
+</head>
+<body>
+
+<header>
+</header>
+<script src="/static/js/header.js"></script>
+<section>
+    <h1>IDEAS</h1>
+    <div class="content">
+        <ul>
+            {% for idea in ideas %}
+                <li><a href="/idea/{{ idea.id }}">{{ idea.title }}</a><span>{{ idea.author.nick_name }}</span></li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% include 'footer.html' %}
+</body>
+</html>

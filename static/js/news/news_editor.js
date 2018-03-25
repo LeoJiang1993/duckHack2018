@@ -3,9 +3,10 @@ $(document).ready(function () {
 
     $("input[name=submit]").click(function () {
         $('textarea[name=content]').html(editor.getData());
-        $.post('/newsadmin/editnews/' + $('input[name=id]').val(),
+        $.post('/idea/save',
             $('#newsEditor').serialize(), function (text) {
-                alert(text);
+                alert('Succeed');
+                $('html').html(text);
             }
         );
     });

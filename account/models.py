@@ -27,12 +27,10 @@ class Account(models.Model):
     def create_account(user_name, password, nick_name, photo, email, last_name, first_name):
         if (not Account.is_nick_name_exist(nick_name)) & (not Account.is_user_name_exist(user_name)) & (
                 not Account.is_email_exist(email)):
-            verify_code = generate_verify_code()
-            while Account.objects.filter(verify_code=verify_code):
-                verify_code = generate_verify_code()
-            new_account = Account(user_name=user_name, password=password, nick_name=nick_name, photo=photo,
-                                  group=-1, last_name=last_name, first_name=first_name,
-                                  email=email, verify_code=verify_code)
+            new_account = Account(user_name=user_name, password=password,
+                                  nick_name=nick_name, photo=photo,
+                                  last_name=last_name, first_name=first_name,
+                                  email=email)
             new_account.save()
             return Account.objects.filter(user_name=user_name).first()
         else:

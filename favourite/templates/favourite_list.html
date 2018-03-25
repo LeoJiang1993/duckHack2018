@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="/static/js/comment/comment_admin.js"></script>
+    <link rel="stylesheet" href="/static/css/pager.css">
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+
+<header>
+</header>
+<script src="/static/js/header.js"></script>
+
+<section class="nav_bar content">
+    <ul>
+        <link rel="stylesheet" href="/static/css/nav_bar.css">
+        <li><a href="/site_admin">ADMIN</a></li>
+        <li>></li>
+        <li>NEWS COMMENT</li>
+    </ul>
+</section>
+<section id="favourite_list" class="content">
+    {% if favourite_list %}
+        <ul>
+            {% for favourite in favourite_list %}
+                <li>
+                    {{ favourite.idea.title }}
+                    <a href="favourite/unlike/{{ favourite.idea.id }}">UNLIKE</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div>Your Favourite List is Empty.</div>
+    {% endif %}
+</section>
+{% include 'footer.html' %}
+</body>
+</html>

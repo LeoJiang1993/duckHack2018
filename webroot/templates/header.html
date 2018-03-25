@@ -9,22 +9,19 @@
         <nav>
             <div class="button"><a href="/">HOME</a></div>
             <div class="button">
-                <div>IDEAS</div>
-                <div class="header_list">
-                    <ul>
-                        <li><a href="/news">TOP NEWS</a></li>
-                        {% for topic in topics %}
-                            <li>
-                                <a href="/newslist/{{ topic.id }}">
-                                    {{ topic.description }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                <div><a href="/idea/list">IDEAS</a></div>
             </div>
             <div class="button">
                 <div>ABOUT US</div>
+            </div>
+            <div class="button">
+                <div><a href="/fund/my">MY FUND</a></div>
+            </div>
+            <div class="button">
+                <div><a href="/idea/editlist">MY IDEAS</a></div>
+            </div>
+            <div class="button">
+                <div><a href="/favourite/list">MY FAVOURITE</a></div>
             </div>
             {% if request.session.user != None %}
                 <div class="button accountButton" id="accountButton">
@@ -38,7 +35,6 @@
                     <form action="#">
                         <input type="button" value="LOG OUT" name="logOut" id="logOut">
                         <div><a href="/account/modify">MODIFY</a></div>
-                        <div><a href="/activity/reserved">RESERVATION</a></div>
                     </form>
                 </div>
             {% else %}

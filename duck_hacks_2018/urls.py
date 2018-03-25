@@ -21,12 +21,14 @@ from duck_hacks_2018 import settings
 from webroot import views
 from account import urls as account_urls
 from ideas import urls as idea_urls
-from comment import urls as comment_urls
+from favourite import urls as favourite_urls
+from fund import urls as fund_urls
 
 urlpatterns = [
                   url(r'^account/', include(account_urls)),
                   url(r'^idea/', include(idea_urls)),
-                  url(r'^comment/', include(comment_urls)),
+                  url(r'^favourite/', include(favourite_urls)),
+                  url(r'^fund/', include(fund_urls)),
                   url(r'^admin/', admin.site.urls),
                   url(r'^header$', views.header),
                   url(r'^$', views.index),

@@ -1,0 +1,6 @@
+<div>{% if is_liked %}
+    <a href="/favourite/unlike/{{ idea_id }}">UNLIKE</a>
+{% else %}
+    <a href="/favourite/like/{{ idea_id }}">LIKE</a>
+{% endif %}</div>
+<div>LIKED: {{ liked }}</div>

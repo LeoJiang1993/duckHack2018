@@ -1,0 +1,16 @@
+<section id="user_funds_list" class="content">
+    {% if funds %}
+        <ul>
+            {% for fund in funds %}
+                <li>
+                    <a href="/idea/{{ fund.idea.id }}">
+                        {{ fund.idea.title }}
+                    </a>
+                    {% ifequal request.session.user.id user_id %}
+                        <a href="funds/refund/{{ fund.idea.id }}">REFUND</a>
+                    {% endifequal %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>

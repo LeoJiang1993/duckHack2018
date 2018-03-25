@@ -15,81 +15,23 @@
 <header>
 </header>
 <script src="/static/js/header.js"></script>
-
-<section class="nav_bar content">
-    <ul>
-        <li><a href="/site_admin">ADMIN</a></li>
-        <li>></li>
-        <li><a href="/newsadmin">NEWS ADMIN</a></li>
-        <li>></li>
-        <li>EDIT NEWS</li>
-    </ul>
-</section>
-<form action="/newsadmin/editnews/{% if news is None %}0{% else %}{{ news.id }}{% endif %}" method="post"
+<h1>EDIT IDEA</h1>
+<form action="" method="post"
       id="newsEditor" class="content" enctype="multipart/form-data">
     {% csrf_token %}
-    {% ifnotequal news None %}
-        <input type="hidden" name="id" value="{{ news.id }}">
+    {% ifnotequal idea None %}
+        <input type="hidden" name="id" value="{{ idea.id }}">
     {% else %}
         <input type="hidden" name="id" value="0">
     {% endifnotequal %}
-    <div class="editorBlock">
-        <label for="topic">TOPIC</label>
-        <select name="topic" id="topic">
-            <option value="">SELECT A TOPIC</option>
-            {% for topic in topics %}
-                <option value="{{ topic.id }}"
-                        {% ifequal topic.id news.topic.id %}selected{% endifequal %}
-                >{{ topic.description }}</option>
-            {% endfor %}
-        </select>
-    </div>
+
     <div class="editorBlock">
         <label for="title">TITLE</label>
-        <input type="text" name="title" id='title' value="{{ news.title }}">
-    </div>
-    <div class="editorBlock">
-        <label for="author">AUTHOR</label>
-        <input type="text" name="author" id="author" value="{{ news.author }}">
-    </div>
-    <div class="editorBlock">
-        <label for="status">STATUS</label>
-        <select name="status" id="status">
-            <option value="">SELECT A STATUE</option>
-            {% for i in status %}
-                <option value="{{ i.0 }}"
-                        {% ifequal i.0 news.status %}
-                        selected
-                        {% endifequal %}
-                >{{ i.1 }}</option>
-            {% endfor %}
-        </select>
-        <label for="activity">ACTIVITY</label>
-        <select name="activity" id="activity">
-            <option value="">SELECT AN ACTIVITY</option>
-            {% for activity in activities %}
-                <option value="{{ activity.id }}"
-                        {% ifequal activity.id news.activity.id %}selected{% endifequal %}
-                >{{ activity.description }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div class="editorBlock">
-        <label for="banner">BANNER</label>
-        <input type="file" id='banner' name="banner" value="{{ news.banner }}">
-    </div>
-    <div class="editorBlock">
-        <img src="/{{ news.banner }}" alt="{{ news.title }}" width="100%">
-    </div>
-    <div class="editorBlock">
-        <label for="comment">
-            COMMENT
-        </label>
-        <input type="checkbox" name="comment" id="comment" {% if news.has_comment %}checked{% endif %}>
+        <input type="text" name="title" id='title' value="{{ idea.title }}">
     </div>
     <div class="editorBlock">
         <label for="editor">CONTENT</label>
-        <textarea name="content" id="editor">{{ news.content|safe }}</textarea>
+        <textarea name="content" id="editor">{{ idea.content|safe }}</textarea>
     </div>
     <div class="editorBlock">
         <input type="button" id="submit" name="submit" value="SUBMIT">

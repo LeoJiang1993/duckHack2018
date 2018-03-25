@@ -24,7 +24,7 @@
     </ul>
 </section>
 <section>
-    <a href="/ideas/edit">NEW IDEA</a>
+    <a href="/idea/edit">NEW IDEA</a>
 </section>
 <section id="ideaList" class="content">
     {% if ideas %}
@@ -33,7 +33,7 @@
             {% for idea in ideas %}
                 <tr>
                     <td>
-                        <a href="/ideas/edit/{{ idea.id }}">{{ idea.title }}</a>
+                        <a href="/idea/edit/{{ idea.id }}">{{ idea.title }}</a>
                     </td>
                     <td>{{ idea.viewed }}</td>
                     <td>{{ idea.time_modified }}</td>

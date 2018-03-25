@@ -1,11 +1,13 @@
 from django.http import Http404
 
+
 def logged_in(func):
-    def logged_in_authority(request, *args):
+    def logged_in_authority(request, *args, **kwargs):
         user = request.session.get('user')
         if user is not None:
-            return func(request, *args)
+            return func(request, *args, **kwargs)
         raise Http404()
+
     return logged_in_authority
 
 

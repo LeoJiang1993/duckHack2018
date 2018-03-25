@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'webroot.apps.WebrootConfig',
     'account.apps.AccountConfig',
     'ideas.apps.IdeasConfig',
-    'comment.apps.CommentConfig',
+    'favourite.apps.FavouriteConfig',
+    'fund.apps.FundConfig'
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,8 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'webroot/templates'),
             os.path.join(BASE_DIR, 'account/templates'),
             os.path.join(BASE_DIR, 'ideas/templates'),
-            os.path.join(BASE_DIR, 'comment/templates'),
+            os.path.join(BASE_DIR, 'favourite/templates'),
+            os.path.join(BASE_DIR, 'fund/templates'),
         ]
         ,
         'APP_DIRS': True,

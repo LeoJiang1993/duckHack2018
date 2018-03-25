@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <link rel="stylesheet" href="/static/css/header_and_footer.css">
+
+    <link rel="stylesheet" href="/static/css/nav_bar.css">
+</head>
+<body>
+
+<header>
+</header>
+<script src="/static/js/header.js"></script>
+<iframe src="/idea/content/{{ idea.id }}" id="news_content" frameborder="0"
+        width="100%" onload="changeFrameHeight()"></iframe>
+<script src="/static/js/news/news.js"></script>
+<div id="favourite" class="content"></div>
+<script>
+    $(document).ready(function () {
+        $.get('/favourite/bar/{{ idea.id }}','',function (data) {
+            $('#favourite').html(data);
+        })
+    })
+</script>
+{% ifnotequal request.session.user None %}
+    <script>
+        $(document).ready(function () {
+            $.get('/fund/make', {idea_id:{{ idea.id }}}, function (data) {
+                $('#make_fund').html(data);
+            })
+        });
+    </script>
+    <div id="make_fund"></div>
+{% endifnotequal %}
+
+
+{% include "footer.html" %}
+</body>
+</html>
