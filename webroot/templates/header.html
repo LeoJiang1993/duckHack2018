@@ -11,42 +11,25 @@
             <div class="button">
                 <div><a href="/idea/list">IDEAS</a></div>
             </div>
-            <div class="button">
-                <div>ABOUT US</div>
-            </div>
-            <div class="button">
-                <div><a href="/fund/my">MY FUND</a></div>
-            </div>
-            <div class="button">
-                <div><a href="/idea/editlist">MY IDEAS</a></div>
-            </div>
-            <div class="button">
-                <div><a href="/favourite/list">MY FAVOURITE</a></div>
-            </div>
             {% if request.session.user != None %}
-                <div class="button accountButton" id="accountButton">
-                <div>{{ request.session.user.nick_name }}</div>
-            {% else %}
-                <div class="button accountButton" id="signInButton">
-                <div>SIGN IN</div>
-            {% endif %}
-            <script>
-                $(document).ready(function () {
-                    $('.accountButton').click(function () {
-                        var list = ($('.header_list'));
-                        list.show();
-                    })
-                })
-            </script>
-            {% if request.session.user != None %}
-                <div class="header_list" id="accountDiv">
+                <div class="button">
+                    <div><a href="/fund/my">MY FUND</a></div>
+                </div>
+                <div class="button">
+                    <div><a href="/idea/editlist">MY IDEAS</a></div>
+                </div>
+                <div class="button">
+                    <div><a href="/favourite/list">MY FAVOURITE</a></div>
+                </div>
+
+                <div class="button" id="accountDiv">
                     <form action="#">
                         <input type="button" value="LOG OUT" name="logOut" id="logOut">
                         <div><a href="/account/modify">MODIFY</a></div>
                     </form>
                 </div>
             {% else %}
-                <div class="header_list" id="signInDiv">
+                <div class="button" id="signInDiv">
                     <form action="#" id="signInForm">
                         {% csrf_token %}
                         <span id="errorDiv"></span>
@@ -58,7 +41,7 @@
                 </div>
             {% endif %}
 
-            </div>
-        </nav>
     </div>
+    </nav>
+</div>
 </div>
